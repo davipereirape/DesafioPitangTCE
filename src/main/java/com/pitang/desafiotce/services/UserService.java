@@ -3,6 +3,7 @@ package com.pitang.desafiotce.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.pitang.desafiotce.domain.User;
 import com.pitang.desafiotce.repositories.UserRepository;
@@ -13,6 +14,7 @@ import com.pitang.desafiotce.repositories.UserRepository;
  *
  * Service of users.
  */
+@Service
 public class UserService {
 
 	@Autowired

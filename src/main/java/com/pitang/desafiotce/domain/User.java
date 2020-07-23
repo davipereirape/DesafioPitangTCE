@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -23,8 +24,8 @@ import lombok.Setter;
  */
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
