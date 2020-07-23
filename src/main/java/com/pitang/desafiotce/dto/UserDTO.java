@@ -5,6 +5,7 @@ import java.util.Date;
 
 import com.pitang.desafiotce.domain.User;
 
+import antlr.StringUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,17 +42,30 @@ public class UserDTO implements Serializable{
 	
 	@Getter
 	@Setter
-	private String login;
-	
-	@Getter
-	@Setter
-	private String password;
-	
-	@Getter
-	@Setter
 	private String phone;
 	
+	@Setter
+	@Getter
+	private String login;
+	
+	@Setter
+	@Getter
+	private String password;
+	
+	/**
+	 * Constructor of UserDto. 
+	 * Sets the fields enable to see in searchies of users
+	 * 
+	 * @param User
+	 */
 	public UserDTO(User user) {
-		// TODO Put the necessary fields.
+		this.id = user.getId();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.email = user.getEmail();
+		this.birthDay = user.getBirthDay();
+		this.phone = user.getPhone();
+		this.login = "";
+		this.password = "";
 	}
 }

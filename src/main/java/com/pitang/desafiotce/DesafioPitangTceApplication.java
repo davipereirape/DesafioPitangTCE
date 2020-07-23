@@ -28,6 +28,6 @@ public class DesafioPitangTceApplication implements CommandLineRunner{
 				sdf.parse("07/09/1988 10:32"), "pereiradavi", "123456", "+5581999603923");
 		
 		this.userRepository.save(user);
-	}
+	}  
 
 }
