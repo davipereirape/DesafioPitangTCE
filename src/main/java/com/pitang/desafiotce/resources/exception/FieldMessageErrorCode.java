@@ -2,17 +2,14 @@ package com.pitang.desafiotce.resources.exception;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * @author Davi Pereira <pereiradavipe@gmail.com>
  * @since July of 2020
  *
- * Encapsulates the fields and error messages corresponding to them.
+ * Encapsulates the fields, error messages and errorCode corresponding to them.
  */
 @NoArgsConstructor
 public class FieldMessageErrorCode extends FieldMessage implements Serializable{

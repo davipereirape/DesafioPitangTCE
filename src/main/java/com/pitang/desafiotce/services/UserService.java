@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.pitang.desafiotce.domain.User;
@@ -24,6 +25,8 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private BCryptPasswordEncoder pe;
 
 	/**
 	 * Finds and returns all user register of the system.
@@ -65,7 +68,7 @@ public class UserService {
 	 */
 	public User fromDTO(UserNewDTO objDTO) {
 		User user = new User(objDTO.getId(), objDTO.getFirstName(), objDTO.getLastName(), objDTO.getEmail(),
-				objDTO.getBirthDay(), objDTO.getLogin(), objDTO.getPassword(), objDTO.getPhone());
+				objDTO.getBirthDay(), objDTO.getLogin(), pe.encode(objDTO.getPassword()), objDTO.getPhone());
 
 		return user;
 	}

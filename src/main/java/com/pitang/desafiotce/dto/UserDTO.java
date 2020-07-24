@@ -3,11 +3,6 @@ package com.pitang.desafiotce.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pitang.desafiotce.domain.User;
 import com.pitang.desafiotce.services.validation.UserInsert;
 import com.pitang.desafiotce.services.validation.UserUpdate;
