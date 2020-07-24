@@ -30,6 +30,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	private JWTUtil jwtUtil;
 	
 	public JWTAuthenticationFilter (AuthenticationManager authenticationManager, JWTUtil jwtUtil) {
+		setAuthenticationFailureHandler(new JWTAuthenticationFailureHandler());
 		this.authenticationManager = authenticationManager;
 		this.jwtUtil = jwtUtil;
 	}
@@ -65,5 +66,4 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		String token = jwtUtil.generationToken(userName);
 		res.addHeader("Authorization", "Bearer" + token);
 	}
-
 }
