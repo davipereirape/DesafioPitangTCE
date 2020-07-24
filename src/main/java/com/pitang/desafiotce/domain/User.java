@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -55,6 +54,7 @@ public class User implements Serializable {
 	
 	@Getter
 	@Setter
+	@Column(unique = true)
 	private String login;
 	
 	@Getter

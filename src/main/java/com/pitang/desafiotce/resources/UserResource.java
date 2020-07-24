@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.pitang.desafiotce.domain.User;
 import com.pitang.desafiotce.dto.UserDTO;
+import com.pitang.desafiotce.dto.UserNewDTO;
 import com.pitang.desafiotce.services.UserService;
 
 /**
@@ -65,8 +68,8 @@ public class UserResource {
 	 * @return ResponseEntity
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody UserDTO objDTO) {
-		objDTO = new UserDTO(service.insert(service.fromDTO(objDTO)));
+	public ResponseEntity<Void> insert(@Valid @RequestBody UserNewDTO objDTO) {
+		objDTO = new UserNewDTO(service.insert(service.fromDTO(objDTO)));
 		
 		URI url = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(objDTO.getId()).toUri();
@@ -82,9 +85,9 @@ public class UserResource {
 	 * @return ResponseEntity
 	 */
 	@RequestMapping(value ="/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody UserDTO objDTO, @PathVariable Integer id) {
+	public ResponseEntity<Void> update(@Valid @RequestBody UserNewDTO objDTO, @PathVariable Integer id) {
 		objDTO.setId(id);
-		objDTO = new UserDTO(service.update(service.fromDTO(objDTO)));
+		objDTO = new UserNewDTO(service.update(service.fromDTO(objDTO)));
 		
 		return ResponseEntity.noContent().build();
 	}

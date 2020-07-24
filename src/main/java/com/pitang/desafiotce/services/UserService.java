@@ -8,8 +8,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.pitang.desafiotce.domain.User;
-import com.pitang.desafiotce.dto.UserDTO;
+import com.pitang.desafiotce.dto.UserNewDTO;
 import com.pitang.desafiotce.repositories.UserRepository;
+import com.pitang.desafiotce.services.exceptions.DataIntegrityException;
 import com.pitang.desafiotce.services.exceptions.ObjectNotFoundException;
 
 /**
@@ -62,13 +63,13 @@ public class UserService {
 	 * @param UserDTO
 	 * @return User
 	 */
-	public User fromDTO(UserDTO objDTO) {
+	public User fromDTO(UserNewDTO objDTO) {
 		User user = new User(objDTO.getId(), objDTO.getFirstName(), objDTO.getLastName(), objDTO.getEmail(),
 				objDTO.getBirthDay(), objDTO.getLogin(), objDTO.getPassword(), objDTO.getPhone());
 
 		return user;
 	}
-
+	
 	/**
 	 * Updates a User and return him
 	 * 
@@ -91,7 +92,7 @@ public class UserService {
 		try {
 			this.userRepository.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-//			throw new DataIntegrityException("Não é possível excluir uma Categoria que possui Produto(s).");
+			throw new DataIntegrityException("It is not possible to delete a user who owns car");
 		}
 	}
 

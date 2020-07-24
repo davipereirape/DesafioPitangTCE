@@ -2,7 +2,8 @@ package com.pitang.desafiotce.resources.exception;
 
 import java.io.Serializable;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +14,6 @@ import lombok.Setter;
  *
  * Encapsulates the fields and error messages corresponding to them.
  */
-@AllArgsConstructor
 @NoArgsConstructor
 public class FieldMessage implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -25,4 +25,12 @@ public class FieldMessage implements Serializable{
 	@Getter
 	@Setter
 	private String message;
+	
+	@Getter
+	private String errorCode;
+	
+	public FieldMessage(String fieldName, String message) {
+		this.fieldName = fieldName;
+		this.message = message;
+	}
 }
