@@ -50,11 +50,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	};
 	
 	private static final String[] PUBLIC_MATCHERS_POST_PUT = {
-			"/users/**"
+			"/users/**",
+			"/cars/**"
 	};
 	
 	private static final String[] PUBLIC_MATCHERS_DELETE = {
-			"/users/**"
+			"/users/**",
+			"/cars/**"
 	};
 	
 	/**

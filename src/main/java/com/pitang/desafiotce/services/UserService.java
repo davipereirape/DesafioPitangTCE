@@ -50,7 +50,7 @@ public class UserService {
 	}
 
 	/**
-	 * Saves a User and returns with id generated
+	 * Saves a User and returns the id generated
 	 * 
 	 * @param user
 	 * @return User
@@ -61,7 +61,7 @@ public class UserService {
 	}
 
 	/**
-	 * Constructs a user type object.
+	 * Constructs a User object.
 	 * 
 	 * @param UserDTO
 	 * @return User
@@ -100,7 +100,7 @@ public class UserService {
 	}
 
 	/**
-	 * Updates the searched object with information about the object to be updated.
+	 *  Updates the searched object with information about the object that needs to be updated.
 	 * 
 	 * @param newObj
 	 * @param obj

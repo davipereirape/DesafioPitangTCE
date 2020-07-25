@@ -2,6 +2,8 @@ package com.pitang.desafiotce.dto;
 
 import java.io.Serializable;
 
+import com.pitang.desafiotce.domain.Car;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,6 +42,15 @@ public class CarDTO implements Serializable {
 	
 	@Getter
 	@Setter
-	private UserDTO user;
+	private Integer userId;
+	
+	public CarDTO(Car car) {
+		this.id = car.getId();
+		this.color = car.getColor();
+		this.licensePlate = car.getLicensePlate();
+		this.model = car.getModel();
+		this.userId = car.getUser().getId();
+		this.year = car.getYear();
+	}
 
 }
