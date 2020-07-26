@@ -1,6 +1,7 @@
 package com.pitang.desafiotce.dto;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,12 +19,12 @@ import lombok.Setter;
  * @author Davi Pereira <pereiradavipe@gmail.com>
  * @since July of 2020
  * 
- * Data Transfer Object of User *
+ * Data Transfer Object of User/Me *
  */
 @NoArgsConstructor
 @UserInsert
 @UserUpdate
-public class UserDTO implements Serializable{
+public class MeDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
  
 	@Getter
@@ -58,13 +59,21 @@ public class UserDTO implements Serializable{
 	@Setter
 	private List<Car> cars = new ArrayList<Car>();
 	
+	@Setter
+	@Getter
+	private String createdAt;
+
+	@Setter
+	@Getter
+	private String lastLogin;
+	
 	/**
-	 * Constructor of UserDto. 
+	 * Constructor of MeDto. 
 	 * Sets the fields enable to see in searches of users
 	 * 
 	 * @param User
 	 */
-	public UserDTO(User user) {
+	public MeDTO(User user) {
 		this.id = user.getId();
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
@@ -72,5 +81,16 @@ public class UserDTO implements Serializable{
 		this.birthDay = user.getBirthDay();
 		this.phone = user.getPhone();
 		this.login = user.getLogin();
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		String date = simpleDateFormat.format(user.getCreatedAt());
+		this.createdAt = date;
+		
+		if (user.getLastLogin() != null) {
+			String dateLastLogin = simpleDateFormat.format(user.getLastLogin());
+			this.lastLogin = dateLastLogin;
+		} else {
+			this.lastLogin = "";
+		}
 	}
 }

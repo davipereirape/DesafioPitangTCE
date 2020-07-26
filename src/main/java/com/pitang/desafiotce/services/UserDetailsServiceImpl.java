@@ -1,5 +1,7 @@
 package com.pitang.desafiotce.services;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,6 +34,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException(login);
 		}
+		
+		user.setLastLogin(new Date());
+		repo.save(user);
 		
 		return new UserSS(user.getId(), user.getLogin(), user.getPassword());
 	}
