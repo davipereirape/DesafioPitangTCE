@@ -11,6 +11,7 @@ import com.pitang.desafiotce.domain.User;
 import com.pitang.desafiotce.dto.CarDTO;
 import com.pitang.desafiotce.repositories.CarRepository;
 import com.pitang.desafiotce.repositories.UserRepository;
+import com.pitang.desafiotce.security.UserSS;
 import com.pitang.desafiotce.services.exceptions.ObjectNotFoundException;
 
 /**
@@ -24,7 +25,10 @@ public class CarService {
 
 	@Autowired
 	private CarRepository carRepository;
-	@Autowired UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired 
+	private UserService userService;
 	
 	/**
 	 * Finds and returns all cars of user.
@@ -32,7 +36,10 @@ public class CarService {
 	 * @return List of Cars
 	 */
 	public List<Car> findAll() {
-		return carRepository.findAll();
+		UserSS userSS = UserService.authenticated();
+		User user = userService.searchUserAuthenticated(userSS);
+		
+		return carRepository.findByUser(user);
 	}
 	
 	/**
@@ -43,7 +50,10 @@ public class CarService {
 	 * @throws ObjectNotFoundException
 	 */
 	public Car find(Integer id) {
-		Optional<Car> obj = carRepository.findById(id);
+		UserSS userSS = UserService.authenticated();
+		User user = userService.searchUserAuthenticated(userSS);
+		
+		Optional<Car> obj = carRepository.findDistinctByIdAndUser(id, user);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Car not found! Id: " + id));
 	}
 	
@@ -55,6 +65,11 @@ public class CarService {
 	 */
 	public Car insert(Car car) {
 		car.setId(null);
+		
+		UserSS userSS = UserService.authenticated();
+		User user = userService.searchUserAuthenticated(userSS);
+		car.setUser(user);
+		
 		return carRepository.save(car);
 	}
 	
@@ -75,8 +90,8 @@ public class CarService {
 	 * @param id
 	 */
 	public void delete(Integer id) {
-		this.find(id);
-		this.carRepository.deleteById(id);
+		Car car = this.find(id);
+		this.carRepository.deleteById(car.getId());
 	}
 	
 	/**

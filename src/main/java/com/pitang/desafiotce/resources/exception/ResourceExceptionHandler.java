@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.pitang.desafiotce.services.exceptions.AuthorizationException;
 import com.pitang.desafiotce.services.exceptions.DataIntegrityException;
 import com.pitang.desafiotce.services.exceptions.ObjectNotFoundException;
 
@@ -84,4 +85,9 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationError);
 	}
 	
+	@ExceptionHandler(AuthorizationException.class)
+	public ResponseEntity<StandardError> objectNotFound (AuthorizationException e, HttpServletRequest request) {
+		StandardError err = new StandardError(HttpStatus.UNAUTHORIZED.value(), e.getMessage());
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(err);
+	}
 }

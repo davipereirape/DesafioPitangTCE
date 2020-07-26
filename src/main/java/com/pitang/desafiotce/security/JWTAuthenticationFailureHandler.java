@@ -30,9 +30,7 @@ public class JWTAuthenticationFailureHandler implements AuthenticationFailureHan
     }
      
     private String json() {
-        return "{\"status\": 401, "
-            + "\"error\": \"Not authorized\", "
-            + "\"message\": \"Invalid login or password\", "
+        return "{\"message\": \"Invalid login or password\", "
             + "\"errorCode\": \"1\"}";
     } 
 }

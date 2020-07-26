@@ -1,6 +1,7 @@
 package com.pitang.desafiotce;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -36,12 +37,17 @@ public class DesafioPitangTceApplication implements CommandLineRunner{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		User user = new User(null, "Davi", "Pereira", "pereiradavi@gmail.com", 
 				sdf.parse("07/09/1988 10:32"), "pereiradavi", pe.encode("123456"), "81999603923");
+		User user2 = new User(null, "Novo", "User", "novouser@gmail.com", 
+				sdf.parse("07/09/1988 10:32"), "novouser", pe.encode("123456"), "81999603923");
+		
 		
 		Car car1 = new Car(null, 2020, "OYU8896", "VW UP", "Azul", user);
+		Car car2 = new Car(null, 2020, "OYU8896", "VW UP", "Preto", user2);
 		user.getCars().add(car1);
+		user2.getCars().add(car2);
 		
-		this.userRepository.save(user);
-		this.carRepository.save(car1);
+		this.userRepository.saveAll(Arrays.asList(user, user2));
+		this.carRepository.saveAll(Arrays.asList(car1, car2));
 	}  
 
 }

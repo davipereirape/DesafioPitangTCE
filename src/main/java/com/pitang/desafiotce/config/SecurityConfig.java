@@ -19,6 +19,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.pitang.desafiotce.security.JWTAuthenticationFilter;
+import com.pitang.desafiotce.security.JWTAuthorizationFilter;
 import com.pitang.desafiotce.security.JWTUtil;
 
 /**
@@ -45,18 +46,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	};
 	
 	private static final String[] PUBLIC_MATCHERS_GET = {
-			"/users/**",
-			"/cars/**"
+			"/users/**"
 	};
 	
 	private static final String[] PUBLIC_MATCHERS_POST_PUT = {
-			"/users/**",
-			"/cars/**"
+			"/users/**"
 	};
 	
 	private static final String[] PUBLIC_MATCHERS_DELETE = {
-			"/users/**",
-			"/cars/**"
+			"/users/**"
 	};
 	
 	/**
@@ -76,6 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.DELETE, PUBLIC_MATCHERS_DELETE).permitAll()
 		.antMatchers(PUBLIC_MATCHERS_ALWAYS).permitAll().anyRequest().authenticated();
 		
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}

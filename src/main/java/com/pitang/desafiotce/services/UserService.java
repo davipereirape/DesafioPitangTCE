@@ -5,12 +5,15 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.pitang.desafiotce.domain.User;
 import com.pitang.desafiotce.dto.UserNewDTO;
 import com.pitang.desafiotce.repositories.UserRepository;
+import com.pitang.desafiotce.security.UserSS;
+import com.pitang.desafiotce.services.exceptions.AuthorizationException;
 import com.pitang.desafiotce.services.exceptions.DataIntegrityException;
 import com.pitang.desafiotce.services.exceptions.ObjectNotFoundException;
 
@@ -28,6 +31,28 @@ public class UserService {
 	@Autowired
 	private BCryptPasswordEncoder pe;
 
+	/**
+	 * Returns the user authenticated with token informed
+	 * @return UserSS
+	 */
+	public static UserSS authenticated() {
+		try {
+			return (UserSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public User searchUserAuthenticated(UserSS userSS)
+	{
+		if (userSS == null || userSS.getId() == null) {
+			throw new AuthorizationException("Unauthorized");
+		} 
+		
+		Optional<User> optionUser = userRepository.findById(userSS.getId());
+		return optionUser.orElseThrow(() -> new AuthorizationException("Unauthorized "));
+	}
+	
 	/**
 	 * Finds and returns all user register of the system.
 	 * 
