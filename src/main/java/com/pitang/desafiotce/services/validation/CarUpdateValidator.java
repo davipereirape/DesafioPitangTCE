@@ -15,7 +15,7 @@ import com.pitang.desafiotce.domain.Car;
 import com.pitang.desafiotce.dto.CarDTO;
 import com.pitang.desafiotce.resources.exception.FieldMessage;
 import com.pitang.desafiotce.services.CarService;
-
+ 
 public class CarUpdateValidator implements ConstraintValidator<CarUpdate, CarDTO> {
 	
 	@Autowired

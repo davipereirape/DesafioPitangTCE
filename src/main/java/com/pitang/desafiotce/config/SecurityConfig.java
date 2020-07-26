@@ -123,7 +123,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		for (String uri : listPublicURI) {
 			if (uriSent.length() <= 2 || uri.contains(uriSent.subSequence(0, 3)))
-				return true;
+				return true; 
 		}
 		
 		return false;

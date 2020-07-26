@@ -30,7 +30,7 @@ public class MeResource {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<MeDTO> findMe() {
 		UserSS userSS = UserService.authenticated();
-		User user = service.find(userSS.getId());
+		User user = service.find(userSS.getId()); 
 		MeDTO objDto = new MeDTO(user);
 		
 		objDto.getCars().addAll(user.getCars());

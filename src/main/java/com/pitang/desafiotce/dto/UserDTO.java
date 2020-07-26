@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
+/** 
  * @author Davi Pereira <pereiradavipe@gmail.com>
  * @since July of 2020
  * 

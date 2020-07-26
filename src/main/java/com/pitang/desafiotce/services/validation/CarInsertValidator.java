@@ -20,7 +20,7 @@ public class CarInsertValidator implements ConstraintValidator<CarInsert, CarDTO
 	
 	@Autowired
 	private CarService carService;
-	
+	 
 	@Autowired
 	private HttpServletRequest request;
 	
@@ -44,7 +44,7 @@ public class CarInsertValidator implements ConstraintValidator<CarInsert, CarDTO
 				context.disableDefaultConstraintViolation();
 				context.buildConstraintViolationWithTemplate(e.getMessage())
 					.addPropertyNode(e.getFieldName())
-					.addConstraintViolation();
+					.addConstraintViolation(); 
 			}
 		}
 		return list.isEmpty();

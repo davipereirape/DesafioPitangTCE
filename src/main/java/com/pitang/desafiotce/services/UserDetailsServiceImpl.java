@@ -27,7 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	/**
 	 * Search the user informed to check the credentials
 	 */
-	@Override
+	@Override 
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 		User user = repo.findByLogin(login);
 		
