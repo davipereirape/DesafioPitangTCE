@@ -1,16 +1,19 @@
 package com.pitang.desafiotce.domain;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -68,9 +71,18 @@ public class User implements Serializable {
 	
 	@Getter
 	@Setter
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<Car> cars = new ArrayList<Car>();
 	
+	@Getter
+	@Column(name = "created_at")
+	private Date createdAt;
+	
+	@Setter
+	@Getter
+	@Column(name = "last_login")
+	private Date lastLogin;
+
 	/**
 	 * Construct of User without cars
 	 * 
@@ -95,4 +107,8 @@ public class User implements Serializable {
 		this.phone = phone;
 	}
 	
+	@PrePersist
+	private void createdAt() throws ParseException {
+	    this.createdAt = new Date();
+    }
 }
