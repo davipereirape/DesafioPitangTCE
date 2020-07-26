@@ -39,9 +39,9 @@ public class JWTUtil {
 	}
 	
 	/**
-	 * 
+	 * Verify if token is valid. 
 	 * @param token
-	 * @return
+	 * @return true - if valid, false if isn't valid. 
 	 */
 	public boolean isTokenValido(String token) {
 		Claims claims = getClaims(token);
@@ -58,6 +58,11 @@ public class JWTUtil {
 		return false;
 	}
 	
+	/**
+	 * Return the username of token informed. 
+	 * @param token
+	 * @return String username
+	 */
 	public String getUserName(String token) {
 		Claims claims = getClaims(token);
 		if (claims != null) {

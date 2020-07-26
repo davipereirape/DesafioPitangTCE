@@ -2,6 +2,7 @@ package com.pitang.desafiotce.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,6 +44,7 @@ public class Car implements Serializable {
 	
 	@Getter
 	@Setter
+	@Column(unique = true)
 	private String licensePlate;
 	
 	@Getter

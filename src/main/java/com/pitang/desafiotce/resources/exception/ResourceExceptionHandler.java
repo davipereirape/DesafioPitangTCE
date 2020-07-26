@@ -85,6 +85,13 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationError);
 	}
 	
+	/**
+	 * Process a AuthorizationException and create the messages matching
+	 * @param MethodArgumentNotValidException
+	 * @param HttpServletRequest
+	 * 
+	 * @return ResponseEntity<StandardError>
+	 */
 	@ExceptionHandler(AuthorizationException.class)
 	public ResponseEntity<StandardError> objectNotFound (AuthorizationException e, HttpServletRequest request) {
 		StandardError err = new StandardError(HttpStatus.UNAUTHORIZED.value(), e.getMessage());

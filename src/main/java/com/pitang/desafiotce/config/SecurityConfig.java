@@ -1,6 +1,8 @@
 package com.pitang.desafiotce.config;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -73,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.PUT, PUBLIC_MATCHERS_POST_PUT).permitAll()
 		.antMatchers(HttpMethod.DELETE, PUBLIC_MATCHERS_DELETE).permitAll()
 		.antMatchers(PUBLIC_MATCHERS_ALWAYS).permitAll().anyRequest().authenticated();
-		
+
 		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -104,6 +106,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+	
+	/**
+	 * verify if urisent is a public matchers
+	 * 
+	 * @param uriSent
+	 * @return true if urisent is public, false if urisent is not a public matchers.
+	 */
+	public static boolean verifyPermissionURI(String uriSent) {
+		List<String> listPublicURI = new ArrayList<String>();
+		listPublicURI.addAll(Arrays.asList(PUBLIC_MATCHERS_ALWAYS));
+		listPublicURI.addAll(Arrays.asList(PUBLIC_MATCHERS_GET));
+		listPublicURI.addAll(Arrays.asList(PUBLIC_MATCHERS_POST_PUT));
+		listPublicURI.addAll(Arrays.asList(PUBLIC_MATCHERS_DELETE));
+		
+		for (String uri : listPublicURI) {
+			if (uri.contains(uriSent.subSequence(0, 5)))
+				return true;
+		}
+		
+		return false;
 	}
 	
 }

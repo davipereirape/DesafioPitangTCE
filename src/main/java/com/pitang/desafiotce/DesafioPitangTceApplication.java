@@ -33,7 +33,6 @@ public class DesafioPitangTceApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		User user = new User(null, "Davi", "Pereira", "pereiradavi@gmail.com", 
 				sdf.parse("07/09/1988 10:32"), "pereiradavi", pe.encode("123456"), "81999603923");
@@ -41,8 +40,8 @@ public class DesafioPitangTceApplication implements CommandLineRunner{
 				sdf.parse("07/09/1988 10:32"), "novouser", pe.encode("123456"), "81999603923");
 		
 		
-		Car car1 = new Car(null, 2020, "OYU8896", "VW UP", "Azul", user);
-		Car car2 = new Car(null, 2020, "OYU8896", "VW UP", "Preto", user2);
+		Car car1 = new Car(null, 2020, "OYU-8796", "VW UP", "Azul", user);
+		Car car2 = new Car(null, 2020, "OYU-8896", "VW UP", "Preto", user2);
 		user.getCars().add(car1);
 		user2.getCars().add(car2);
 		

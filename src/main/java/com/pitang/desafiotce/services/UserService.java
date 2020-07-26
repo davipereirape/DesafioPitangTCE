@@ -43,6 +43,10 @@ public class UserService {
 		}
 	}
 	
+	/**
+	 * Returns the User by userSS
+	 * @return User
+	 */
 	public User searchUserAuthenticated(UserSS userSS)
 	{
 		if (userSS == null || userSS.getId() == null) {

@@ -16,12 +16,27 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.session.SessionAuthenticationException;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import com.pitang.desafiotce.config.SecurityConfig;
+
+/**
+ * @author Davi Pereira <pereiradavipe@gmail.com>
+ * @since July of 2020
+ * 
+ * Filter to verify authorization of user by token.
+ */
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
 	private JWTUtil jwtUtil;
 
 	private UserDetailsService userDetailsService;
-
+	
+	/**
+	 * Constructor 
+	 * 
+	 * @param authenticationManager
+	 * @param jwtUtil
+	 * @param userDetailsService
+	 */
 	public JWTAuthorizationFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil, 
 			UserDetailsService userDetailsService) {
 		super(authenticationManager);
@@ -29,22 +44,25 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 		this.userDetailsService = userDetailsService;
 	}
 
+	/**
+	 * Verify the authorization of user by token
+	 */
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, 
 			HttpServletResponse response, 
 			FilterChain chain) throws IOException, ServletException {
-
+		
 		String header = request.getHeader("Authorization");
 		if (header != null && header.startsWith("Bearer "))	{
 			UsernamePasswordAuthenticationToken auth = this.getAuthentication(header.substring(7));
 
 			if (auth != null) {
 				SecurityContextHolder.getContext().setAuthentication(auth);
-			} else {
+			} else if (!SecurityConfig.verifyPermissionURI(request.getRequestURI())){
 				onUnsuccessfulAuthentication(request, response, new SessionAuthenticationException("Unauthorized - invalid session"));
 				return;
 			}
-		}  else {
+		}  else if (!SecurityConfig.verifyPermissionURI(request.getRequestURI())) {
 			onUnsuccessfulAuthentication(request, response, new SessionAuthenticationException("Unauthorized"));
 			return;
 		}
@@ -52,6 +70,9 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 		chain.doFilter(request, response);
 	}
 	
+	/**
+	 * Set informations of response in a case of unsuccessful. 
+	 */
 	protected void onUnsuccessfulAuthentication(HttpServletRequest request,
 			HttpServletResponse response, AuthenticationException failed) throws IOException {
 		

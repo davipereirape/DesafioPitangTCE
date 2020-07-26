@@ -58,6 +58,30 @@ public class CarService {
 	}
 	
 	/**
+	 * Finds and returns a specific car of user by license.
+	 * 
+	 * @param License
+	 * @return Car
+	 * @throws ObjectNotFoundException
+	 */
+	public Car findByLicense(String license) {
+		Optional<Car> obj = carRepository.findDistinctByLicensePlate(license);
+		return obj.orElse(null);
+	}
+	
+	/**
+	 * Finds and returns a specific car of by license and id.
+	 * 
+	 * @param License
+	 * @return Car
+	 * @throws ObjectNotFoundException
+	 */
+	public Car findByLicenseAndId(String license, Integer id) {
+		Optional<Car> obj = carRepository.findDistinctByLicensePlateAndId(license, id);
+		return obj.orElse(null);
+	}
+	
+	/**
 	 * Saves a Car and returns the id generated
 	 * 
 	 * @param car
