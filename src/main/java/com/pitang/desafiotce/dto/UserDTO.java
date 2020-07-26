@@ -54,10 +54,6 @@ public class UserDTO implements Serializable{
 	@Setter
 	private String login;
 	
-	@Getter
-	@Setter
-	private List<Car> cars = new ArrayList<Car>();
-	
 	/**
 	 * Constructor of UserDto. 
 	 * Sets the fields enable to see in searches of users
