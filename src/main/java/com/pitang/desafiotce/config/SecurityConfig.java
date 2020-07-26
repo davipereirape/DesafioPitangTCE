@@ -122,7 +122,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		listPublicURI.addAll(Arrays.asList(PUBLIC_MATCHERS_DELETE));
 		
 		for (String uri : listPublicURI) {
-			if (uriSent.length() <= 2 || uri.contains(uriSent.subSequence(0, 3)))
+			if (uriSent.length() <= 4 || uri.contains(uriSent.subSequence(0, 5)))
 				return true;
 		}
 		

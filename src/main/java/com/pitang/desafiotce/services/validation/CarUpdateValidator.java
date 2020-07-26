@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 
 import com.pitang.desafiotce.domain.Car;
+import com.pitang.desafiotce.domain.User;
 import com.pitang.desafiotce.dto.CarDTO;
 import com.pitang.desafiotce.resources.exception.FieldMessage;
 import com.pitang.desafiotce.services.CarService;

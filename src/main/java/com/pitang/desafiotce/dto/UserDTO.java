@@ -1,11 +1,8 @@
 package com.pitang.desafiotce.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import com.pitang.desafiotce.domain.Car;
 import com.pitang.desafiotce.domain.User;
 import com.pitang.desafiotce.services.validation.UserInsert;
 import com.pitang.desafiotce.services.validation.UserUpdate;
@@ -50,17 +47,9 @@ public class UserDTO implements Serializable{
 	@Setter
 	private String phone;
 	
-	@Getter
-	@Setter
-	private String login;
-	
-	@Getter
-	@Setter
-	private List<Car> cars = new ArrayList<Car>();
-	
 	/**
 	 * Constructor of UserDto. 
-	 * Sets the fields enable to see in searches of users
+	 * Sets the fields enable to see in searchies of users
 	 * 
 	 * @param User
 	 */
@@ -71,6 +60,5 @@ public class UserDTO implements Serializable{
 		this.email = user.getEmail();
 		this.birthDay = user.getBirthDay();
 		this.phone = user.getPhone();
-		this.login = user.getLogin();
 	}
 }
