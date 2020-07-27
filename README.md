@@ -45,5 +45,6 @@ No intuito de reduzir o código, utilizei o framework lombok.
 - Executar a classe principal: DesafioPitangTceApplication.java (nesta classe, existe um pré-load de dados a serem utilizados para fins de teste através do POSTMAN).
 - Verificar/Alterar código conforme necessidade. 
 
-
+# NOTA
+-  API /singin foi substituida, temporariamente, pela API /login
 
