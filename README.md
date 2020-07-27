@@ -46,5 +46,5 @@ No intuito de reduzir o código, utilizei o framework lombok.
 - Verificar/Alterar código conforme necessidade. 
 
 # NOTA
--  API /singin foi substituida, temporariamente, pela API /login
+-  Rota /singin foi substituida, temporariamente, pela rota /login
 
