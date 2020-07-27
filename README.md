@@ -39,7 +39,7 @@ No intuito de reduzir o código, utilizei o framework lombok.
 
 # BUILD PROJETO
 - Baixar IDE https://spring.io/tools
-- Baixar jar do lombok https://projectlombok.org/download,executar o comando para executar o jar: java -jar lombok.jar e seguir as indicações para encontrar o "eclise.ini" instalado (ou spring tools IDE).
+- Baixar jar do lombok https://projectlombok.org/download,executar o comando para executar o jar: java -jar lombok.jar e seguir as indicações para encontrar o "eclipse.ini" instalado (ou spring tools IDE).
 - Realizar o clone do projeto para máquina local;
 - Abrir Spring Tools IDE e importar o projeto maven. 
 - Executar a classe principal: DesafioPitangTceApplication.java (nesta classe, existe um pré-load de dados a serem utilizados para fins de teste através do POSTMAN).
