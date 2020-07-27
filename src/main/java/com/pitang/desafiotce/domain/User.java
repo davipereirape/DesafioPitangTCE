@@ -76,12 +76,8 @@ public class User implements Serializable {
 	
 	@Getter
 	@Column(name = "created_at")
-<<<<<<< HEAD
 	private Date createdAt; 
-=======
-	private Date createdAt;
->>>>>>> parent of 86f04d7... Revert "C:/Program Files/Git/API me"
-	
+
 	@Setter
 	@Getter
 	@Column(name = "last_login")
